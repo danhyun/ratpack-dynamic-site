@@ -1,0 +1,34 @@
+buildscript {
+  repositories {
+    maven { url "http://oss.jfrog.org/artifactory/repo" }
+    jcenter()
+  }
+  dependencies {
+    classpath 'io.ratpack:ratpack-gradle:0.9.7-SNAPSHOT'
+  }
+}
+
+apply plugin: "ratpack-groovy"
+apply plugin: "idea"
+apply plugin: "eclipse"
+
+repositories {
+  maven { url "http://oss.jfrog.org/artifactory/repo" }
+  jcenter()
+  maven { url "http://repo.springsource.org/repo" }
+  maven { url "https://nexus.codehaus.org/content/repositories/snapshots/" }
+}
+
+dependencies {
+  springloaded "org.springsource.loaded:springloaded:1.1.5.RELEASE"
+
+  compile ratpack.dependency("remote")
+  compile ratpack.dependency("codahale-metrics")
+  compile ratpack.dependency("rx")
+  compile ratpack.dependency("hystrix")
+
+  runtime 'org.apache.logging.log4j:log4j-slf4j-impl:2.0-rc2'
+  runtime 'org.apache.logging.log4j:log4j-api:2.0-rc2'
+  runtime 'org.apache.logging.log4j:log4j-core:2.0-rc2'
+  runtime 'com.lmax:disruptor:3.2.1'
+}
